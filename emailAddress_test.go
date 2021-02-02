@@ -8,7 +8,7 @@ import (
 
 func TestNewEmailAddress(t *testing.T) {
 	var err error
-	if _, err = NewEmailAddress("engineering@hatchify.co"); err != nil {
+	if _, err = NewEmailAddress("engineering@google.com"); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -17,7 +17,7 @@ func TestEmailAddress_Validate(t *testing.T) {
 	var err error
 	testCases := []testCase{
 		{
-			emailAddress: "engineering@hatchify.co",
+			emailAddress: "engineering@google.com",
 			err:          nil,
 		},
 		{
@@ -25,8 +25,12 @@ func TestEmailAddress_Validate(t *testing.T) {
 			err:          nil,
 		},
 		{
-			emailAddress: "engineering@hatchifyco",
-			err:          errors.Error("\"hatchifyco\" does not have a valid TLD"),
+			emailAddress: "John_Doe@example.com",
+			err:          nil,
+		},
+		{
+			emailAddress: "engineering@googlecom",
+			err:          errors.Error("\"googlecom\" does not have a valid TLD"),
 		},
 		{
 			emailAddress: "@",
