@@ -1,9 +1,8 @@
 package emailvalidator
 
 import (
+	"errors"
 	"testing"
-
-	"github.com/hatchify/errors"
 )
 
 func TestNewEmailAddress(t *testing.T) {
@@ -30,7 +29,7 @@ func TestEmailAddress_Validate(t *testing.T) {
 		},
 		{
 			emailAddress: "engineering@googlecom",
-			err:          errors.Error("\"googlecom\" does not have a valid TLD"),
+			err:          errors.New("\"googlecom\" does not have a valid TLD"),
 		},
 		{
 			emailAddress: "@",
@@ -42,15 +41,15 @@ func TestEmailAddress_Validate(t *testing.T) {
 		},
 		{
 			emailAddress: "a\"b(c)d,e:f;g<h>i[j\\k]l@example.com",
-			err:          errors.Error("invalid character \"\"\" at index 1"),
+			err:          errors.New("invalid character \"\"\" at index 1"),
 		},
 		{
 			emailAddress: "hello\\world@example.com",
-			err:          errors.Error("invalid character \"\\\" at index 5"),
+			err:          errors.New("invalid character \"\\\" at index 5"),
 		},
 		{
 			emailAddress: "just\"not\"right@example.com",
-			err:          errors.Error("invalid character \"\"\" at index 4"),
+			err:          errors.New("invalid character \"\"\" at index 4"),
 		},
 		{
 			emailAddress: "John..Doe@example.com",
