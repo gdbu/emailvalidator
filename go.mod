@@ -1,8 +1,5 @@
 module github.com/gdbu/emailvalidator
 
-go 1.14
+go 1.25
 
-require (
-	github.com/hatchify/errors v0.4.82
-	golang.org/x/net v0.0.0-20210119194325-5f4716e94777
-)
+require golang.org/x/net v0.49.0
